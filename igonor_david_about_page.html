@@ -1,0 +1,305 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+html,body{background:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+.pg{background:#fff;font-family:'Space Grotesk',sans-serif;color:#0d0d0d;overflow:hidden;position:relative;}
+.grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at top left, rgba(37,99,235,0.04), transparent 30%), radial-gradient(circle at bottom right, rgba(59,130,246,0.03), transparent 25%);}
+.noise{position:absolute;inset:0;z-index:0;opacity:0.28;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='140'%3E%3Ctext x='0' y='20' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.26'%3Econst%20a%20%3D%20%5B1%2C2%5D%3B%3C/text%3E%3Ctext x='0' y='40' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.24'%3Eif%20(a%5B0%5D)%20%7B%3C/text%3E%3Ctext x='0' y='60' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.22'%3Econsole.log(%22ok%22)%3B%3C/text%3E%3Ctext x='0' y='80' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.2'%3Ereturn%20true%3B%3C/text%3E%3C/svg%3E");background-size:160px 110px;background-repeat:repeat;animation:codeFloat 18s linear infinite;mix-blend-mode:multiply;}
+@keyframes codeFloat{0%{background-position:0 0;opacity:0.24;}50%{background-position:0 90px;opacity:0.3;}100%{background-position:0 180px;opacity:0.24;}}
+
+.nav{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #f0f0f0;background:#fff;}
+.logo{font-size:1.15rem;font-weight:700;letter-spacing:-0.03em;color:#0d0d0d;}
+.logo span{color:#2563eb;}
+.logo-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#2563eb;margin-left:2px;vertical-align:middle;animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.navlinks{display:flex;gap:0.25rem;}
+.navlinks a{font-size:0.78rem;font-weight:500;color:#555;text-decoration:none;padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;transition:all 0.15s;}
+.navlinks a.act{background:#eff6ff;color:#2563eb;}
+.navlinks a:hover{background:#f5f5f5;color:#0d0d0d;}
+.nav-hire{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:0.78rem;font-weight:600;padding:0.45rem 1.1rem;border-radius:8px;background:#0d0d0d;color:#fff;border:none;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nav-hire:hover{background:#2563eb;}
+
+.body{position:relative;z-index:1;padding:2.5rem 2rem 3rem;}
+
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2563eb;background:#eff6ff;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:1rem;font-family:'Fira Code',monospace;}
+.section-tag::before{content:'';color:#93c5fd;}
+
+.top-grid{display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start;margin-bottom:3rem;}
+
+.img-slot{background:#f8f8f8;border:2px dashed #e0e0e0;border-radius:16px;height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.img-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;}
+.img-slot:hover{border-color:#2563eb;background:#eff6ff;}
+.img-slot i{font-size:36px;color:#c0c0c0;}
+.img-slot:hover i{color:#2563eb;}
+.img-slot-label{font-size:0.75rem;color:#bbb;font-family:'Fira Code',monospace;}
+.img-slot:hover .img-slot-label{color:#2563eb;}
+.img-corner{position:absolute;width:16px;height:16px;border-color:#d0d0d0;border-style:solid;}
+.img-corner.tl{top:10px;left:10px;border-width:2px 0 0 2px;border-radius:3px 0 0 0;}
+.img-corner.tr{top:10px;right:10px;border-width:2px 2px 0 0;border-radius:0 3px 0 0;}
+.img-corner.bl{bottom:10px;left:10px;border-width:0 0 2px 2px;border-radius:0 0 0 3px;}
+.img-corner.br{bottom:10px;right:10px;border-width:0 2px 2px 0;border-radius:0 0 3px 0;}
+.img-name{font-family:'Fira Code',monospace;font-size:0.75rem;color:#555;text-align:center;padding:0.6rem;}
+.img-name span{color:#2563eb;}
+
+.h2{font-size:2rem;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.85rem;color:#0d0d0d;}
+.h2 em{font-style:normal;color:#2563eb;}
+.lead{font-size:0.9rem;color:#444;line-height:1.85;margin-bottom:0.9rem;}
+.lead a{color:#2563eb;text-decoration:none;font-weight:500;}
+.lead a:hover{text-decoration:underline;}
+
+.quote-block{border-left:3px solid #2563eb;padding:0.7rem 1rem;background:#f8faff;border-radius:0 8px 8px 0;margin:1.25rem 0;font-size:0.88rem;color:#1e3a8a;font-style:italic;line-height:1.7;}
+
+.divider{height:1px;background:#f0f0f0;margin:2.5rem 0;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2.5rem;}
+
+.skills-block h3,.timeline-block h3,.certs-block h3{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:1.1rem;font-family:'Fira Code',monospace;}
+
+.skill-group{margin-bottom:1.4rem;}
+.skill-group-label{font-size:0.7rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#bbb;margin-bottom:0.5rem;font-family:'Fira Code',monospace;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:0.72rem;font-weight:500;padding:0.25rem 0.65rem;border-radius:7px;background:#f5f5f5;color:#333;border:1px solid #ebebeb;transition:all 0.15s;cursor:default;}
+.chip:hover{background:#eff6ff;color:#2563eb;border-color:#bfdbfe;}
+.chip.b{background:#eff6ff;color:#2563eb;border-color:#bfdbfe;}
+.chip.g{background:#f0fdf4;color:#15803d;border-color:#bbf7d0;}
+.chip.p{background:#faf5ff;color:#7c3aed;border-color:#ddd6fe;}
+
+.timeline{position:relative;padding-left:1.5rem;}
+.timeline::before{content:'';position:absolute;left:4px;top:6px;bottom:6px;width:1.5px;background:#e5e7eb;}
+.titem{position:relative;margin-bottom:1.5rem;}
+.titem:last-child{margin-bottom:0;}
+.tdot{position:absolute;left:-1.5rem;top:4px;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid #d1d5db;}
+.tdot.active{background:#2563eb;border-color:#2563eb;}
+.tco{font-size:0.68rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#2563eb;font-family:'Fira Code',monospace;}
+.trole{font-size:0.85rem;font-weight:600;color:#0d0d0d;margin-top:1px;}
+.tdate{font-size:0.68rem;color:#aaa;margin-top:2px;font-family:'Fira Code',monospace;}
+.tdesc{font-size:0.78rem;color:#555;margin-top:4px;line-height:1.6;}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #ebebeb;border-radius:12px;overflow:hidden;margin-bottom:2.5rem;background:#fafafa;}
+.sstat{padding:1rem;text-align:center;border-right:1px solid #ebebeb;}
+.sstat:last-child{border-right:none;}
+.sstat-n{font-size:1.4rem;font-weight:700;color:#0d0d0d;letter-spacing:-0.02em;}
+.sstat-l{font-size:0.65rem;color:#aaa;margin-top:2px;line-height:1.4;}
+
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;}
+.cert{background:#f8f8f8;border:1px solid #ebebeb;border-radius:9px;padding:0.65rem 0.85rem;display:flex;align-items:flex-start;gap:0.6rem;}
+.cert i{font-size:16px;color:#2563eb;margin-top:1px;flex-shrink:0;}
+.cert-name{font-size:0.78rem;font-weight:600;color:#0d0d0d;}
+.cert-from{font-size:0.68rem;color:#aaa;font-family:'Fira Code',monospace;margin-top:1px;}
+
+.terminal{background:#0d0d0d;border-radius:11px;padding:0.9rem 1rem;font-family:'Fira Code',monospace;font-size:0.7rem;}
+.t-bar{display:flex;gap:5px;margin-bottom:0.7rem;}
+.t-dot{width:9px;height:9px;border-radius:50%;}
+.t-line{color:#4ade80;line-height:1.75;}
+.t-line .p{color:#6366f1;}
+.t-line .c{color:#e2e8f0;}
+.t-line .o{color:#94a3b8;}
+.t-line .hi{color:#4ade80;}
+.cursor{display:inline-block;width:7px;height:12px;background:#4ade80;vertical-align:middle;margin-left:2px;animation:blink 1s infinite;}
+
+.fade-in{animation:fadeUp 0.5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+
+<div class="pg">
+<div class="grid-bg"></div>
+<div class="noise"></div>
+
+<nav class="nav">
+  <div class="logo">David<span>.</span><span class="logo-dot"></span></div>
+  <div class="navlinks">
+    <a href="index.html">Home</a><a href="igonor_david_about_page.html" class="act">About</a><a href="igonor_david_experience_page.html">Experience</a><a href="igonor_david_projects_page.html">Projects</a><a href="igonor_david_contact_page.html">Contact</a>
+  </div>
+  <a class="nav-hire" href="igonor_david_contact_page.html#contact">Hire me →</a>
+</nav>
+
+<div class="body">
+
+  <div class="section-tag">about me</div>
+
+  <div class="top-grid fade-in">
+    <div>
+      <h2 class="h2">From Lagos streets to<br><em>global platforms</em></h2>
+
+      <div class="quote-block">From the busy streets of Lagos to multiple business platforms, I've carved a path that blends practical skill, technical mastery, and entrepreneurial vision.</div>
+
+      <p class="lead">My journey began with laptops, wires, and hardware failures a true sea of starters where every repaired machine taught me more than technology. It taught me patience, problem-solving, and the value of reliability. For me, technology isn't just about devices or software; it's about creating solutions that work for people, consistently and efficiently.</p>
+
+      <p class="lead">I earned an Advanced Diploma in Software Engineering (Distinction), completed Code Lagos Web Development training, and pursued extensive online learning. Years of self-taught development have shaped my ability to adapt and grow. I've gained hands-on experience across PHP, JavaScript, HTML5, CSS3, MySQL, MariaDB, WordPress, Shopify, Adobe Creative Suite, Figma, AWS, cloud infrastructure, and payment gateway integrations.</p>
+
+      <p class="lead">I'm also skilled in networking, system configuration, hardware troubleshooting, IT support, and project management. This blend of structured education, hands-on experience, and self-directed learning allows me to approach problems creatively and build versatile solutions.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:0.75rem;">
+      <div class="img-slot">
+        <div class="img-corner tl"></div>
+        <div class="img-corner tr"></div>
+        <div class="img-corner bl"></div>
+        <div class="img-corner br"></div>
+        <img src="https://www.techcore247.com.ng/wp-content/uploads/2026/06/my-im.webp" alt="David" />
+      </div>
+      <div class="img-name">Igonor David <span>WordPress, Ai Developer</span>IT Virtual Assistant</div>
+
+      <div class="terminal">
+        <div class="t-bar">
+          <div class="t-dot" style="background:#ff5f57;"></div>
+          <div class="t-dot" style="background:#febc2e;"></div>
+          <div class="t-dot" style="background:#28c840;"></div>
+        </div>
+        <div class="t-line"><span class="p">david@kdex9</span><span class="c"> ~/about</span></div>
+        <div class="t-line"><span class="p">$ </span><span class="c">experience --years</span></div>
+        <div class="t-line"><span class="o">→ </span><span class="hi">5+ years</span><span class="o"> active development</span></div>
+        <div class="t-line"><span class="p">$ </span><span class="c">companies --founded</span></div>
+        <div class="t-line"><span class="o">→ Kdex9 Digitals, TechCore247</span></div>
+        <div class="t-line"><span class="p">$ </span><span class="c">experience --years</span></div>
+        <div class="t-line"><span class="o">→ </span><span class="hi">7+</span><span class="o"> AI built platforms</span></div>
+        <div class="t-line"><span class="p">$ </span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row fade-in">
+    <div class="sstat"><div class="sstat-n">200+</div><div class="sstat-l">WordPress sites delivered</div></div>
+    <div class="sstat"><div class="sstat-n">5+</div><div class="sstat-l">Years experience</div></div>
+    <div class="sstat"><div class="sstat-n">7+</div><div class="sstat-l">AI built platforms</div></div>
+    <div class="sstat"><div class="sstat-n">2</div><div class="sstat-l">Companies founded</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="two-col fade-in">
+    <div class="skills-block">
+      <h3>Technical skills</h3>
+      <div class="skill-group">
+        <div class="skill-group-label">Languages</div>
+        <div class="chips">
+          <span class="chip b">PHP</span><span class="chip b">JavaScript</span><span class="chip">jQuery</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">SQL</span><span class="chip">VB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label" Platforms & CMS</div>
+        <div class="chips">
+          <span class="chip b">WordPress</span><span class="chip">WooCommerce</span><span class="chip">Webflow</span><span class="chip">Shopify</span><span class="chip">Wix</span><span class="chip">Odoo</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Cloud & DevOps</div>
+        <div class="chips">
+          <span class="chip g">VPS Admin</span><span class="chip g">Cloudflare</span><span class="chip">AWS</span><span class="chip">Vercel</span><span class="chip">Coolify</span><span class="chip">cPanel</span><span class="chip">DNS</span><span class="chip">SSL/TLS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Databases</div>
+        <div class="chips">
+          <span class="chip">MySQL</span><span class="chip">MariaDB</span><span class="chip">PostgreSQL</span><span class="chip">SQLite</span><span class="chip">MS Access</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Design & Tools</div>
+        <div class="chips">
+          <span class="chip p">Figma</span><span class="chip p">Adobe PS</span><span class="chip p">Illustrator</span><span class="chip">Canva</span><span class="chip">Postman</span><span class="chip">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">AI & APIs</div>
+        <div class="chips">
+          <span class="chip p">Claude AI</span><span class="chip">ChatGPT</span><span class="chip">RESTful APIs</span><span class="chip">Webhooks</span><span class="chip">Google Apps Script</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="timeline-block" style="margin-bottom:2rem;">
+        <h3>Experience highlights</h3>
+        <div class="timeline">
+          <div class="titem">
+            <div class="tdot active"></div>
+            <div class="tco">Kdex9 Digitals: Founder</div>
+            <div class="trole">Web developer and head of operations</div>
+            <div class="tdate">May 2026 – present</div>
+            <div class="tdesc">End-to-end digital solutions: websites, cloud infra, LMS, e-commerce, and automation.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot active"></div>
+            <div class="tco">Cray Finance</div>
+            <div class="trole">WordPress, AI developer</div>
+            <div class="tdate">March 2026 present</div>
+            <div class="tdesc">Delivered 200+ WordPress sites using AI-assisted workflows, Vercel, and Coolify.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot active"></div>
+            <div class="tco">Square Digitals</div>
+            <div class="trole">VA WordPress and cloud infrastructure</div>
+            <div class="tdate">Feb 2026 present</div>
+            <div class="tdesc">VPS management, Cloudflare config, DNS, SSL, migrations, and performance optimization.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot active"></div>
+            <div class="tco">Pivotal Workforce Toronto, Canada</div>
+            <div class="trole">Full-stack WordPress developer</div>
+            <div class="tdate">2026 – present</div>
+            <div class="tdesc">10+ landing pages, Google Sheets automation, CRM setup, OpenCATS ATS, RDP deployment.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot"></div>
+            <div class="tco">Sales366 Online Limited</div>
+            <div class="trole">Web developer equity partner</div>
+            <div class="tdate">Jan 2021 – present</div>
+            <div class="tdesc">Built sales366.com; integrated Carbon Zero, Unital Capital, Credit Direct APIs. Delivered 7+ AI-built platforms with technical leadership.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot"></div>
+            <div class="tco">TechCore247 Technologies Founder</div>
+            <div class="trole">Web developer and operations lead</div>
+            <div class="tdate">2026 – present · <a href="https://www.techcore247.com.ng" style="color:#2563eb;text-decoration:none;">techcore247.com.ng</a></div>
+            <div class="tdesc">IT solutions and e-commerce company: WooCommerce, repair booking, WhatsApp integration, Cloudflare, SEO.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot"></div>
+            <div class="tco">Skillhat Consulting Firm</div>
+            <div class="trole">IT support, content creation, web developer</div>
+            <div class="tdate">2020 – present · Victoria Island, Lagos</div>
+          </div>
+          <div class="titem">
+            <div class="tdot"></div>
+            <div class="tco">Adorable Toes School</div>
+            <div class="trole">IT consultant and service provider</div>
+            <div class="tdate">2022 – 2025</div>
+            <div class="tdesc">Network infra, hardware support, software setup, and ICT asset management for the school.</div>
+          </div>
+          <div class="titem">
+            <div class="tdot"></div>
+            <div class="tco">Orbit 360 Resources Limited</div>
+            <div class="trole">IT specialist intern</div>
+            <div class="tdate">2020 · Victoria Island, Lagos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="certs-block">
+        <h3>Education and certifications</h3>
+        <div class="cert-grid">
+          <div class="cert"><i class="ti ti-school" aria-hidden="true"></i><div><div class="cert-name">B.Sc. Information Technology</div><div class="cert-from">NOUN ongoing, 2025</div></div></div>
+          <div class="cert"><i class="ti ti-award" aria-hidden="true"></i><div><div class="cert-name">Advanced Diploma Software Engineering</div><div class="cert-from">Cifman Institute · Distinction, 2020</div></div></div>
+          <div class="cert"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cert-name">Secure MEAN Stack Developer</div><div class="cert-from">Alison · Diploma, 2026</div></div></div>
+          <div class="cert"><i class="ti ti-certificate" aria-hidden="true"></i><div><div class="cert-name">Modern Application Development</div><div class="cert-from">Alison · Diploma, 2026</div></div></div>
+          <div class="cert"><i class="ti ti-code" aria-hidden="true"></i><div><div class="cert-name">Web Development Training</div><div class="cert-from">Code Lagos, 2018</div></div></div>
+          <div class="cert"><i class="ti ti-device-desktop" aria-hidden="true"></i><div><div class="cert-name">Microsoft Office and Desktop Publishing</div><div class="cert-from">Mascom Institute, 2016</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="fade-in" style="background:#f8faff;border:1px solid #bfdbfe;border-radius:14px;padding:1.5rem 1.75rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;">
+    <div>
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#2563eb;font-family:'Fira Code',monospace;margin-bottom:0.4rem;"> at my core</div>
+      <div style="font-size:0.92rem;color:#1e3a8a;line-height:1.7;max-width:520px;">I am a problem solver and visionary thinker. I balance entrepreneurship, technical excellence, and community impact building systems that last and creating opportunities where others see challenges.</div>
+    </div>
+    <button style="background:#0d0d0d;color:#fff;padding:0.65rem 1.4rem;border-radius:9px;font-weight:600;font-size:0.82rem;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;" onclick="sendPrompt('Show me David\'s projects and what he has built')">See my work →</button>
+  </div>
+
+</div>
+</div>

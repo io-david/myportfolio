@@ -1,0 +1,365 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+html,body{background:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+.pg{background:#fff;font-family:'Space Grotesk',sans-serif;color:#0d0d0d;position:relative;overflow:hidden;}
+.grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at top left, rgba(37,99,235,0.04), transparent 30%), radial-gradient(circle at bottom right, rgba(59,130,246,0.03), transparent 25%);}
+.noise{position:absolute;inset:0;z-index:0;opacity:0.28;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='140'%3E%3Ctext x='0' y='20' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.26'%3Econst%20a%20%3D%20%5B1%2C2%5D%3B%3C/text%3E%3Ctext x='0' y='40' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.24'%3Eif%20(a%5B0%5D)%20%7B%3C/text%3E%3Ctext x='0' y='60' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.22'%3Econsole.log(%22ok%22)%3B%3C/text%3E%3Ctext x='0' y='80' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.2'%3Ereturn%20true%3B%3C/text%3E%3C/svg%3E");background-size:160px 110px;background-repeat:repeat;animation:codeFloat 18s linear infinite;mix-blend-mode:multiply;}
+@keyframes codeFloat{0%{background-position:0 0;opacity:0.24;}50%{background-position:0 90px;opacity:0.3;}100%{background-position:0 180px;opacity:0.24;}}
+
+.nav{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #f0f0f0;background:#fff;}
+.logo{font-size:1.15rem;font-weight:700;letter-spacing:-0.03em;}
+.logo span{color:#2563eb;}
+.logo-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#2563eb;margin-left:2px;vertical-align:middle;animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.navlinks{display:flex;gap:0.25rem;}
+.navlinks a{font-size:0.78rem;font-weight:500;color:#555;text-decoration:none;padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;transition:all 0.15s;}
+.navlinks a.act{background:#eff6ff;color:#2563eb;}
+.navlinks a:hover{background:#f5f5f5;color:#0d0d0d;}
+.nav-hire{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:0.78rem;font-weight:600;padding:0.45rem 1.1rem;border-radius:8px;background:#0d0d0d;color:#fff;border:none;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nav-hire:hover{background:#2563eb;}
+
+.body{position:relative;z-index:1;padding:2.5rem 2rem 3rem;}
+
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2563eb;background:#eff6ff;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:1rem;font-family:'Fira Code',monospace;}
+.section-tag::before{content:'';color:#93c5fd;}
+
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;gap:1.5rem;}
+.h2{font-size:2rem;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.5rem;}
+.h2 em{font-style:normal;color:#2563eb;}
+.sub{font-size:0.88rem;color:#666;line-height:1.7;max-width:480px;}
+
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #ebebeb;border-radius:12px;overflow:hidden;margin-bottom:2rem;background:#fafafa;}
+.sb{padding:0.9rem 1rem;text-align:center;border-right:1px solid #ebebeb;}
+.sb:last-child{border-right:none;}
+.sb-n{font-size:1.4rem;font-weight:700;color:#0d0d0d;letter-spacing:-0.02em;}
+.sb-l{font-size:0.63rem;color:#999;margin-top:2px;line-height:1.4;}
+
+.filter-row{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:2rem;align-items:center;}
+.filter-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'Fira Code',monospace;margin-right:0.5rem;}
+.fb{font-size:0.75rem;font-weight:500;color:#555;background:#f5f5f5;border:1px solid #e5e7eb;padding:0.35rem 0.85rem;border-radius:100px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.fb:hover{background:#eff6ff;color:#2563eb;border-color:#bfdbfe;}
+.fb.active{background:#0d0d0d;color:#fff;border-color:#0d0d0d;}
+
+.featured{background:#0d0d0d;border-radius:16px;padding:1.75rem;margin-bottom:1.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+.feat-eyebrow{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#6366f1;font-family:'Fira Code',monospace;margin-bottom:0.5rem;display:flex;align-items:center;gap:6px;}
+.feat-eyebrow::before{content:'★';color:#fbbf24;}
+.feat-title{font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.feat-desc{font-size:0.82rem;color:#94a3b8;line-height:1.75;max-width:460px;margin-bottom:1rem;}
+.feat-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.1rem;}
+.ft{font-size:0.65rem;font-weight:500;padding:0.2rem 0.65rem;border-radius:6px;background:#1e293b;color:#93c5fd;border:1px solid #334155;}
+.feat-links{display:flex;gap:0.6rem;}
+.feat-link{font-size:0.78rem;font-weight:600;padding:0.5rem 1.1rem;border-radius:8px;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.15s;}
+.feat-link.pri{background:#2563eb;color:#fff;border:none;}
+.feat-link.pri:hover{background:#1d4ed8;}
+.feat-link.sec{background:transparent;color:#94a3b8;border:1px solid #334155;}
+.feat-link.sec:hover{border-color:#6366f1;color:#a5b4fc;}
+.feat-metric{text-align:center;background:#111827;border-radius:12px;padding:1.25rem 1.5rem;border:1px solid #1e293b;min-width:120px;}
+.feat-metric-n{font-size:2.2rem;font-weight:700;color:#fff;letter-spacing:-0.03em;font-family:'Space Grotesk',sans-serif;}
+.feat-metric-l{font-size:0.65rem;color:#6366f1;font-family:'Fira Code',monospace;margin-top:4px;}
+.feat-metric-sub{font-size:0.6rem;color:#475569;margin-top:2px;}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.card{background:#fff;border:1px solid #ebebeb;border-radius:13px;padding:1.25rem;transition:all 0.18s;cursor:default;display:flex;flex-direction:column;}
+.card:hover{border-color:#2563eb;transform:translateY(-3px);}
+.card.hidden{display:none;}
+
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
+.card-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.card-badges{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.badge{font-size:0.62rem;font-weight:600;padding:0.18rem 0.55rem;border-radius:100px;}
+.badge.live{background:#dcfce7;color:#15803d;}
+.badge.progress{background:#fef9c3;color:#854d0e;}
+.badge.flagship{background:#ede9fe;color:#6d28d9;}
+.badge.scale{background:#fff1f2;color:#be123c;}
+
+.card-name{font-size:0.92rem;font-weight:700;color:#0d0d0d;margin-bottom:0.35rem;line-height:1.3;}
+.card-client{font-size:0.68rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#aaa;font-family:'Fira Code',monospace;margin-bottom:0.5rem;}
+.card-desc{font-size:0.78rem;color:#555;line-height:1.7;flex:1;}
+
+.card-footer{margin-top:0.9rem;padding-top:0.9rem;border-top:1px solid #f5f5f5;}
+.card-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:0.65rem;}
+.ct{font-size:0.62rem;font-weight:500;padding:2px 6px;border-radius:5px;background:#f5f5f5;color:#555;border:1px solid #ebebeb;}
+.ct.b{background:#eff6ff;color:#2563eb;border-color:#bfdbfe;}
+.ct.g{background:#f0fdf4;color:#15803d;border-color:#bbf7d0;}
+.ct.p{background:#faf5ff;color:#7c3aed;border-color:#ddd6fe;}
+
+.card-links{display:flex;gap:0.4rem;}
+.cl{font-size:0.7rem;font-weight:600;padding:0.3rem 0.7rem;border-radius:6px;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:all 0.15s;border:1px solid #e5e7eb;color:#555;background:#fafafa;}
+.cl:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff;}
+.cl i{font-size:12px;}
+
+.mass-card{grid-column:span 3;background:#f8faff;border:1px solid #bfdbfe;border-radius:13px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1.5rem;}
+.mass-num{font-size:2.5rem;font-weight:700;color:#2563eb;letter-spacing:-0.03em;flex-shrink:0;font-family:'Space Grotesk',sans-serif;}
+.mass-text h4{font-size:0.92rem;font-weight:700;color:#0d0d0d;margin-bottom:0.3rem;}
+.mass-text p{font-size:0.78rem;color:#555;line-height:1.65;}
+.mass-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:0.6rem;}
+.mt{font-size:0.65rem;font-weight:500;padding:2px 7px;border-radius:5px;background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;}
+
+.cta-bar{background:#f8faff;border:1px solid #bfdbfe;border-radius:14px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2rem;}
+.cta-text strong{display:block;font-size:0.92rem;color:#0d0d0d;margin-bottom:2px;}
+.cta-text span{font-size:0.8rem;color:#555;}
+.cta-btn{background:#0d0d0d;color:#fff;padding:0.6rem 1.3rem;border-radius:9px;font-weight:600;font-size:0.82rem;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
+.cta-btn:hover{background:#2563eb;}
+
+.fade{animation:fadeUp 0.5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+
+<div class="pg">
+<div class="grid-bg"></div>
+<div class="noise"></div>
+
+<nav class="nav">
+  <div class="logo">David<span>.</span><span class="logo-dot"></span></div>
+  <div class="navlinks">
+    <a href="index.html">Home</a><a href="igonor_david_about_page.html">About</a><a href="igonor_david_experience_page.html">Experience</a><a href="igonor_david_projects_page.html" class="act">Projects</a><a href="igonor_david_contact_page.html">Contact</a>
+  </div>
+  <a class="nav-hire" href="igonor_david_contact_page.html#contact">Hire me →</a>
+</nav>
+
+<div class="body fade">
+
+  <div class="hero-row">
+    <div>
+      <div class="section-tag">projects</div>
+      <h2 class="h2">Things I've built,<br><em>shipped, and own</em></h2>
+      <p class="sub">From flagship platforms serving thousands of users to infrastructure that keeps businesses running 24/7 here's a selection of real work I've delivered.</p>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="sb"><div class="sb-n">200+</div><div class="sb-l">WordPress sites delivered</div></div>
+    <div class="sb"><div class="sb-n">10+</div><div class="sb-l">Landing pages with automation</div></div>
+    <div class="sb"><div class="sb-n">2</div><div class="sb-l">Companies founded and running</div></div>
+    <div class="sb"><div class="sb-n">3</div><div class="sb-l">Countries served</div></div>
+  </div>
+
+  <div class="featured">
+    <div>
+      <div class="feat-eyebrow">flagship project</div>
+      <div class="feat-title">Sales366.com</div>
+      <div class="feat-desc">Built and continue to maintain the core platform for Sales366 Online Limited a Nigerian marketplace. Implemented API integrations with Carbon Zero, Unital Capital, and Credit Direct for seamless payments. Delivered 7+ AI-built platforms with technical leadership and long-term commitment.</div>
+      <div class="feat-tags">
+        <span class="ft">WordPress</span><span class="ft">API Integration</span><span class="ft">Fintech</span><span class="ft">CRM</span><span class="ft">Cloud Infra</span>
+      </div>
+      <div class="feat-links">
+        <a class="feat-link pri" href="https://sales366.com" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Visit site</a>
+      </div>
+    </div>
+    <div>
+      <div class="feat-metric"><div class="feat-metric-n">7+</div><div class="feat-metric-l">AI built</div><div class="feat-metric-sub">platforms</div></div>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <span class="filter-label">filter:</span>
+    <button class="fb active" onclick="filterProj('all',this)">All projects</button>
+    <button class="fb" onclick="filterProj('platform',this)">Platforms</button>
+    <button class="fb" onclick="filterProj('ecommerce',this)">E-commerce</button>
+    <button class="fb" onclick="filterProj('infra',this)">Infrastructure</button>
+    <button class="fb" onclick="filterProj('lms',this)">LMS / Education</button>
+    <button class="fb" onclick="filterProj('marketing',this)">Marketing</button>
+    <button class="fb" onclick="filterProj('ai',this)">AI-assisted</button>
+  </div>
+
+  <div class="grid" id="proj-grid">
+
+    <div class="card" data-tags="platform ecommerce">
+      <div class="card-head">
+        <div class="card-icon" style="background:#faf5ff;"><i class="ti ti-building-store" style="color:#7c3aed;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span><span class="badge flagship">Founder</span></div>
+      </div>
+      <div class="card-client">TechCore247 Technologies</div>
+      <div class="card-name">IT solutions and e-commerce platform</div>
+      <div class="card-desc">Founded and built the complete tech stack for this IT solutions company WooCommerce store, online repair booking system, WhatsApp Business integration, Cloudflare CDN, Core Web Vitals optimization, and full SEO implementation.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">WordPress</span><span class="ct">WooCommerce</span><span class="ct g">Cloudflare</span><span class="ct">Booking system</span><span class="ct">SEO</span>
+        </div>
+        <div class="card-links">
+          <a class="cl" href="https://www.techcore247.com.ng" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Visit site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="ecommerce platform">
+      <div class="card-head">
+        <div class="card-icon" style="background:#fdf2f8;"><i class="ti ti-scissors" style="color:#be185d;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span></div>
+      </div>
+      <div class="card-client">Capelli Salon and Parlour</div>
+      <div class="card-name">Complete digital redevelopment</div>
+      <div class="card-desc">Full website revamp, hosting migration, WooCommerce e-commerce integration, online appointment booking system, and a QR code-based customer review system connected to a centralized database for feedback management.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">WordPress</span><span class="ct">WooCommerce</span><span class="ct">Booking</span><span class="ct g">QR reviews</span><span class="ct">Hosting migration</span>
+        </div>
+        <div class="card-links">
+          <span class="cl"><i class="ti ti-lock" aria-hidden="true"></i>Under NDA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="lms platform">
+      <div class="card-head">
+        <div class="card-icon" style="background:#f0fdf4;"><i class="ti ti-school" style="color:#16a34a;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge progress">In progress</span></div>
+      </div>
+      <div class="card-client">Institute of Trichology</div>
+      <div class="card-name">Website revamp and LMS development</div>
+      <div class="card-desc">Led the complete revamp of the institute's website and took over full management of their digital infrastructure. Currently developing and maintaining a Learning Management System with course delivery, student enrollment, quizzes, and certificate automation.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">WordPress</span><span class="ct p">LMS</span><span class="ct g">VPS</span><span class="ct">Certificates</span><span class="ct">Course management</span>
+        </div>
+        <div class="card-links">
+          <span class="cl"><i class="ti ti-loader" aria-hidden="true"></i>In development</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="marketing platform infra">
+      <div class="card-head">
+        <div class="card-icon" style="background:#f0f9ff;"><i class="ti ti-target" style="color:#0284c7;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span></div>
+      </div>
+      <div class="card-client">Pivotal Workforce Toronto, Canada</div>
+      <div class="card-name">Recruitment landing pages with lead automation</div>
+      <div class="card-desc">Designed and built 10+ high-converting recruitment landing pages integrated with Google Sheets via Google Apps Script for automated lead capture. Collaborated with a marketing lead in the Philippines. Also deployed OpenCATS ATS and configured CRM workflows.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">Landing Pages</span><span class="ct g">Google Apps Script</span><span class="ct">OpenCATS</span><span class="ct">CRM</span><span class="ct">RDP</span>
+        </div>
+        <div class="card-links">
+          <span class="cl"><i class="ti ti-lock" aria-hidden="true"></i>Client work</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="infra platform">
+      <div class="card-head">
+        <div class="card-icon" style="background:#fff7ed;"><i class="ti ti-server" style="color:#ea580c;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span></div>
+      </div>
+      <div class="card-client">Square Digitals</div>
+      <div class="card-name">VPS and Cloudflare infrastructure management</div>
+      <div class="card-desc">Managed multiple Virtual Private Servers, Cloudflare configurations including DNS, SSL/TLS, caching, and firewall rules. Performed website migrations, SSL certificate setup, performance optimization, and ongoing security hardening across all client environments.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct g">VPS</span><span class="ct b">Cloudflare</span><span class="ct">DNS</span><span class="ct">SSL/TLS</span><span class="ct">Migrations</span>
+        </div>
+        <div class="card-links">
+          <span class="cl"><i class="ti ti-lock" aria-hidden="true"></i>Client infra</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="platform ecommerce">
+      <div class="card-head">
+        <div class="card-icon" style="background:#fffbeb;"><i class="ti ti-briefcase" style="color:#b45309;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span><span class="badge flagship">Equity</span></div>
+      </div>
+      <div class="card-client">Sales366 Online Limited</div>
+      <div class="card-name">Nigerian market platform sales366.com</div>
+      <div class="card-desc">Built the core platform from the ground up, managing full development and maintenance. Integrated Carbon Zero, Unital Capital, and Credit Direct APIs for payment processing. Delivered multi-platform remote support across IT and content creation.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">Platform dev</span><span class="ct g">API integration</span><span class="ct p">Fintech</span><span class="ct">Cloud infra</span>
+        </div>
+        <div class="card-links">
+          <a class="cl" href="https://sales366.com" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Visit site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="platform ecommerce">
+      <div class="card-head">
+        <div class="card-icon" style="background:#eff6ff;"><i class="ti ti-shopping-cart" style="color:#2563eb;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span></div>
+      </div>
+      <div class="card-client">TechCore247 Technologies</div>
+      <div class="card-name">E-commerce store with service booking</div>
+      <div class="card-desc">Built a WordPress WooCommerce storefront for computer sales with integrated repair service booking system. Includes product catalog, secure payments, and customer service workflows.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">WordPress</span><span class="ct">WooCommerce</span><span class="ct">Booking</span><span class="ct g">Cloudflare</span>
+        </div>
+        <div class="card-links">
+          <a class="cl" href="https://www.techcore247.com.ng" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i>Visit site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="platform marketing">
+      <div class="card-head">
+        <div class="card-icon" style="background:#fdf4ff;"><i class="ti ti-speakerphone" style="color:#a21caf;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge live">Live</span></div>
+      </div>
+      <div class="card-client">Skillhat Consulting Firm</div>
+      <div class="card-name">Official website and brand assets</div>
+      <div class="card-desc">Planned, designed, and developed the company's official website. Created marketing materials, promotional graphics, and branded digital assets using Adobe Photoshop and Illustrator. Provided ongoing IT consulting and technical support.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct b">Web dev</span><span class="ct p">Adobe PS</span><span class="ct">Illustrator</span><span class="ct">IT support</span>
+        </div>
+        <div class="card-links">
+          <span class="cl"><i class="ti ti-lock" aria-hidden="true"></i>Client work</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-tags="ai infra platform">
+      <div class="card-head">
+        <div class="card-icon" style="background:#eff6ff;"><i class="ti ti-robot" style="color:#2563eb;font-size:20px" aria-hidden="true"></i></div>
+        <div class="card-badges"><span class="badge scale">At scale</span></div>
+      </div>
+      <div class="card-client">Cray Finance</div>
+      <div class="card-name">AI-assisted WordPress delivery pipeline</div>
+      <div class="card-desc">Engineered a repeatable AI-assisted development workflow using Claude AI to accelerate WordPress site builds across industries. Deployed via Vercel and Coolify for consistent, production-ready output at scale. Over 200 sites delivered through this pipeline.</div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="ct p">Claude AI</span><span class="ct b">WordPress</span><span class="ct g">Vercel</span><span class="ct">Coolify</span><span class="ct">Automation</span>
+        </div>
+        <div class="card-links">
+          <span class="cl"><i class="ti ti-lock" aria-hidden="true"></i>Internal pipeline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mass-card" data-tags="ai platform">
+      <div class="mass-num">200+</div>
+      <div class="mass-text">
+        <h4>WordPress websites delivered for Cray Finance clients</h4>
+        <p>Across diverse industries business, e-commerce, services, portfolios, and landing pages each built responsive, performance-optimised, and SEO-ready using AI-assisted workflows and modern deployment platforms.</p>
+        <div class="mass-tags">
+          <span class="mt">WordPress</span><span class="mt">Claude AI</span><span class="mt">Vercel</span><span class="mt">Coolify</span><span class="mt">WooCommerce</span><span class="mt">SEO</span><span class="mt">Performance</span><span class="mt">Security</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cta-bar">
+    <div class="cta-text">
+      <strong>Have a project in mind?</strong>
+      <span>I take on WordPress builds, cloud infrastructure, AI-assisted development, and long-term technical partnerships.</span>
+    </div>
+    <button class="cta-btn" onclick="sendPrompt('I have a project I want to discuss with David')">Start a project →</button>
+  </div>
+
+</div>
+</div>
+
+<script>
+function filterProj(tag, btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#proj-grid .card, #proj-grid .mass-card').forEach(item=>{
+    if(tag==='all'){item.classList.remove('hidden');return;}
+    const tags=(item.dataset.tags||'').split(' ');
+    item.classList.toggle('hidden',!tags.includes(tag));
+  });
+}
+</script>

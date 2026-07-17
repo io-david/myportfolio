@@ -1,0 +1,465 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+html,body{background:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+.pg{background:#fff;font-family:'Space Grotesk',sans-serif;color:#0d0d0d;position:relative;overflow:hidden;}
+.grid-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at top left, rgba(37,99,235,0.04), transparent 30%), radial-gradient(circle at bottom right, rgba(59,130,246,0.03), transparent 25%);}
+.noise{position:absolute;inset:0;z-index:0;opacity:0.28;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='140'%3E%3Ctext x='0' y='20' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.26'%3Econst%20a%20%3D%20%5B1%2C2%5D%3B%3C/text%3E%3Ctext x='0' y='40' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.24'%3Eif%20(a%5B0%5D)%20%7B%3C/text%3E%3Ctext x='0' y='60' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.22'%3Econsole.log(%22ok%22)%3B%3C/text%3E%3Ctext x='0' y='80' font-family='monospace' font-size='12' fill='rgba(15,23,42,0.28)' opacity='0.2'%3Ereturn%20true%3B%3C/text%3E%3C/svg%3E");background-size:160px 110px;background-repeat:repeat;animation:codeFloat 18s linear infinite;mix-blend-mode:multiply;}
+@keyframes codeFloat{0%{background-position:0 0;opacity:0.24;}50%{background-position:0 90px;opacity:0.3;}100%{background-position:0 180px;opacity:0.24;}}
+
+.nav{position:relative;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #f0f0f0;background:#fff;}
+.logo{font-size:1.15rem;font-weight:700;letter-spacing:-0.03em;}
+.logo span{color:#2563eb;}
+.logo-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#2563eb;margin-left:2px;vertical-align:middle;animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.navlinks{display:flex;gap:0.25rem;}
+.navlinks a{font-size:0.78rem;font-weight:500;color:#555;text-decoration:none;padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;transition:all 0.15s;}
+.navlinks a.act{background:#eff6ff;color:#2563eb;}
+.navlinks a:hover{background:#f5f5f5;color:#0d0d0d;}
+.nav-hire{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:0.78rem;font-weight:600;padding:0.45rem 1.1rem;border-radius:8px;background:#0d0d0d;color:#fff;border:none;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.nav-hire:hover{background:#2563eb;}
+
+.body{position:relative;z-index:1;padding:2.5rem 2rem 3rem;}
+
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2563eb;background:#eff6ff;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:1rem;font-family:'Fira Code',monospace;}
+.section-tag::before{content:'';color:#93c5fd;}
+
+.hero-row{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;margin-bottom:2.5rem;}
+.h2{font-size:2rem;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.5rem;}
+.h2 em{font-style:normal;color:#2563eb;}
+.sub{font-size:0.88rem;color:#666;line-height:1.7;max-width:520px;}
+
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #ebebeb;border-radius:12px;overflow:hidden;margin-bottom:2.5rem;background:#fafafa;}
+.sb{padding:1rem 1.1rem;text-align:center;border-right:1px solid #ebebeb;}
+.sb:last-child{border-right:none;}
+.sb-n{font-size:1.5rem;font-weight:700;color:#0d0d0d;letter-spacing:-0.02em;}
+.sb-l{font-size:0.65rem;color:#999;margin-top:3px;line-height:1.4;}
+
+.layout{display:grid;grid-template-columns:200px 1fr;gap:2.5rem;align-items:start;}
+
+.sidebar{position:sticky;top:1rem;}
+.filter-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;font-family:'Fira Code',monospace;margin-bottom:0.6rem;}
+.filter-btn{display:block;width:100%;text-align:left;font-size:0.78rem;font-weight:500;color:#555;background:none;border:none;padding:0.45rem 0.75rem;border-radius:7px;cursor:pointer;font-family:inherit;transition:all 0.15s;margin-bottom:2px;}
+.filter-btn:hover{background:#f5f5f5;color:#0d0d0d;}
+.filter-btn.active{background:#eff6ff;color:#2563eb;font-weight:600;}
+
+.year-marker{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#bbb;font-family:'Fira Code',monospace;margin:2rem 0 1rem;display:flex;align-items:center;gap:0.75rem;}
+.year-marker::after{content:'';flex:1;height:1px;background:#f0f0f0;}
+
+.timeline{position:relative;padding-left:1.75rem;}
+.timeline::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1.5px;background:#e5e7eb;}
+
+.titem{position:relative;margin-bottom:1.5rem;opacity:1;transition:opacity 0.2s;}
+.titem.hidden{display:none;}
+.tdot{position:absolute;left:-1.75rem;top:6px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid #d1d5db;transition:all 0.15s;}
+.tdot.now{background:#2563eb;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,0.15);}
+.tdot.key{background:#7c3aed;border-color:#7c3aed;}
+
+.exp-card{background:#fff;border:1px solid #ebebeb;border-radius:13px;padding:1.25rem 1.4rem;transition:all 0.18s;cursor:default;}
+.exp-card:hover{border-color:#2563eb;transform:translateX(3px);}
+.exp-card.featured{border-color:#bfdbfe;background:#fafcff;}
+
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;gap:1rem;}
+.card-left{}
+.co-name{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-family:'Fira Code',monospace;}
+.co-name.blue{color:#2563eb;}
+.co-name.purple{color:#7c3aed;}
+.co-name.green{color:#16a34a;}
+.co-name.orange{color:#ea580c;}
+.role-title{font-size:1rem;font-weight:700;color:#0d0d0d;margin-top:2px;line-height:1.2;}
+.date-loc{font-size:0.7rem;color:#aaa;margin-top:3px;font-family:'Fira Code',monospace;display:flex;align-items:center;gap:0.5rem;}
+.date-loc i{font-size:11px;}
+
+.badges{display:flex;gap:5px;flex-wrap:wrap;}
+.badge{font-size:0.65rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:100px;}
+.badge.current{background:#dcfce7;color:#15803d;}
+.badge.founder{background:#faf5ff;color:#7c3aed;}
+.badge.equity{background:#fffbeb;color:#b45309;}
+.badge.remote{background:#f0f9ff;color:#0284c7;}
+.badge.intl{background:#fff1f2;color:#be123c;}
+
+.achievements{margin-top:0.85rem;}
+.ach-title{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;font-family:'Fira Code',monospace;margin-bottom:0.5rem;}
+.ach-list{list-style:none;display:flex;flex-direction:column;gap:3px;}
+.ach-list li{font-size:0.78rem;color:#555;line-height:1.6;display:flex;align-items:flex-start;gap:7px;padding:3px 0;border-bottom:1px solid #f5f5f5;}
+.ach-list li:last-child{border-bottom:none;}
+.ach-list li::before{content:'→';color:#d1d5db;flex-shrink:0;font-size:0.7rem;margin-top:2px;}
+
+.tech-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #f5f5f5;}
+.tt{font-size:0.65rem;font-weight:500;padding:2px 7px;border-radius:6px;background:#f5f5f5;color:#555;border:1px solid #ebebeb;}
+.tt.b{background:#eff6ff;color:#2563eb;border-color:#bfdbfe;}
+.tt.g{background:#f0fdf4;color:#15803d;border-color:#bbf7d0;}
+.tt.p{background:#faf5ff;color:#7c3aed;border-color:#ddd6fe;}
+
+.terminal{background:#0d0d0d;border-radius:11px;padding:0.9rem 1rem;font-family:'Fira Code',monospace;font-size:0.68rem;margin-top:1.5rem;}
+.t-bar{display:flex;gap:5px;margin-bottom:0.7rem;}
+.t-dot2{width:9px;height:9px;border-radius:50%;}
+.t-l{line-height:1.8;}
+.tp{color:#6366f1;}.tc{color:#e2e8f0;}.to{color:#94a3b8;}.thi{color:#4ade80;}.tw{color:#fbbf24;}
+.cursor{display:inline-block;width:7px;height:11px;background:#4ade80;vertical-align:middle;margin-left:2px;animation:blink 1s infinite;}
+
+.fade{animation:fadeUp 0.5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+.cta-bar{background:#f8faff;border:1px solid #bfdbfe;border-radius:14px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:2.5rem;}
+.cta-bar-text{font-size:0.88rem;color:#1e3a8a;line-height:1.6;}
+.cta-bar-text strong{display:block;font-size:0.95rem;color:#0d0d0d;margin-bottom:2px;}
+.cta-btn{background:#0d0d0d;color:#fff;padding:0.6rem 1.3rem;border-radius:9px;font-weight:600;font-size:0.82rem;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
+.cta-btn:hover{background:#2563eb;}
+</style>
+
+<div class="pg">
+<div class="grid-bg"></div>
+<div class="noise"></div>
+
+<nav class="nav">
+  <div class="logo">David<span>.</span><span class="logo-dot"></span></div>
+  <div class="navlinks">
+    <a href="index.html">Home</a><a href="igonor_david_about_page.html">About</a><a href="igonor_david_experience_page.html" class="act">Experience</a><a href="igonor_david_projects_page.html">Projects</a><a href="igonor_david_contact_page.html">Contact</a>
+  </div>
+  <a class="nav-hire" href="igonor_david_contact_page.html#contact">Hire me →</a>
+</nav>
+
+<div class="body fade">
+
+  <div class="hero-row">
+    <div>
+      <div class="section-tag">work experience</div>
+      <h2 class="h2">6+ years building in<br><em>the real world</em></h2>
+      <p class="sub">From hardware repairs on the streets of Lagos to managing cloud infrastructure for companies in Nigeria, Canada, and beyond every role has sharpened my craft and expanded my reach.</p>
+    </div>
+    <div class="terminal" style="width:220px;flex-shrink:0;">
+      <div class="t-bar">
+        <div class="t-dot2" style="background:#ff5f57;"></div>
+        <div class="t-dot2" style="background:#febc2e;"></div>
+        <div class="t-dot2" style="background:#28c840;"></div>
+      </div>
+      <div class="t-l"><span class="tp">$ </span><span class="tc">git log --oneline</span></div>
+      <div class="t-l"><span class="thi">■</span><span class="to"> 2026 Kdex9 Digitals</span></div>
+      <div class="t-l"><span class="thi">■</span><span class="to"> 2026 Cray Finance</span></div>
+      <div class="t-l"><span class="thi">■</span><span class="to"> 2026 Square Digitals</span></div>
+      <div class="t-l"><span class="thi">■</span><span class="to"> 2026 Pivotal Workforce</span></div>
+      <div class="t-l"><span class="tw">■</span><span class="to"> 2021 Sales366 Online</span></div>
+      <div class="t-l"><span class="to">■</span><span class="to"> 2022 Adorable Toes</span></div>
+      <div class="t-l"><span class="to">■</span><span class="to"> 2020 Skillhat · Orbit360</span></div>
+      <div class="t-l"><span class="tp">$ </span><span class="cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="sb"><div class="sb-n">6+</div><div class="sb-l">Years in the industry</div></div>
+    <div class="sb"><div class="sb-n">9</div><div class="sb-l">Companies worked with</div></div>
+    <div class="sb"><div class="sb-n">200+</div><div class="sb-l">WordPress sites delivered</div></div>
+    <div class="sb"><div class="sb-n">3</div><div class="sb-l">Countries (NG · CA · PH)</div></div>
+  </div>
+
+  <div class="layout">
+
+    <div class="sidebar">
+      <div class="filter-label">filter by</div>
+      <button class="filter-btn active" onclick="filterExp('all',this)">All roles</button>
+      <button class="filter-btn" onclick="filterExp('current',this)">Current</button>
+      <button class="filter-btn" onclick="filterExp('founder',this)">Founder</button>
+      <button class="filter-btn" onclick="filterExp('dev',this)">Development</button>
+      <button class="filter-btn" onclick="filterExp('it',this)">IT support</button>
+    </div>
+
+    <div>
+      <div class="year-marker">2026 present</div>
+      <div class="timeline">
+
+        <div class="titem" data-tags="current founder dev">
+          <div class="tdot key"></div>
+          <div class="exp-card featured">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name purple">Kdex9 Digitals</div>
+                <div class="role-title">Founder Web Developer and Head of Operations</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>May 2026 – present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Lagos, Nigeria (Remote)</div>
+              </div>
+              <div class="badges">
+                <span class="badge current">Current</span>
+                <span class="badge founder">Founder</span>
+              </div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Revamped and manage the complete digital infrastructure for Capelli Salon and Parlour website, e-commerce, online booking, and QR-based customer review system.</li>
+                <li>Led the full revamp of the Institute of Trichology website and currently developing their LMS for online course delivery, student enrollment, quizzes, and certificates.</li>
+                <li>Manage domain configuration, DNS records, Cloudflare integration, SSL certificates, and email services for all client platforms.</li>
+                <li>Deliver end-to-end digital solutions: website development, cloud infrastructure, VPS admin, business automation, and AI-assisted workflows.</li>
+                <li>Provide ongoing maintenance, performance optimization, security management, and technical support across all managed clients.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt b">WordPress</span><span class="tt b">WooCommerce</span><span class="tt">LMS</span><span class="tt">Cloudflare</span><span class="tt g">VPS</span><span class="tt">DNS</span><span class="tt p">AI workflows</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="titem" data-tags="current dev">
+          <div class="tdot now"></div>
+          <div class="exp-card">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name blue">Cray Finance</div>
+                <div class="role-title">Independent Contractor WordPress & AI Developer</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>March 2026 – present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Remote, Nigeria</div>
+              </div>
+              <div class="badges">
+                <span class="badge current">Current</span>
+                <span class="badge remote">Remote</span>
+              </div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Developed and delivered 200+ WordPress websites across diverse industries with responsive, high-performance, and user-focused designs.</li>
+                <li>Leveraged Claude AI to accelerate development workflows, improve code quality, and enhance productivity on every project.</li>
+                <li>Deployed and managed web applications using Vercel and Coolify for scalable, production-ready hosting.</li>
+                <li>Optimized website performance through caching strategies, image optimization, database tuning, and code refinement.</li>
+                <li>Diagnosed and resolved website, server, hosting, and deployment issues to maintain uninterrupted service availability.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt b">WordPress</span><span class="tt p">Claude AI</span><span class="tt">Vercel</span><span class="tt">Coolify</span><span class="tt">SEO</span><span class="tt g">Performance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="titem" data-tags="current dev it">
+          <div class="tdot now"></div>
+          <div class="exp-card">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name blue">Square Digitals</div>
+                <div class="role-title">Virtual Assistant WordPress Developer and Cloud Infrastructure</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>Feb 2026 – present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Remote, Nigeria</div>
+              </div>
+              <div class="badges">
+                <span class="badge current">Current</span>
+                <span class="badge remote">Remote</span>
+              </div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Managed Virtual Private Servers including setup, configuration, monitoring, and maintenance.</li>
+                <li>Configured and managed Cloudflare services DNS, SSL/TLS, caching, firewall rules, and performance optimization.</li>
+                <li>Handled domain registrations, DNS records (A, CNAME, MX, TXT, CAA), domain pointing, and DNS propagation troubleshooting.</li>
+                <li>Performed website migrations between hosting providers with minimal downtime and preserved data integrity.</li>
+                <li>Implemented security best practices including malware prevention, firewall configuration, and regular maintenance cycles.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt g">VPS</span><span class="tt b">Cloudflare</span><span class="tt">WordPress</span><span class="tt">SSL</span><span class="tt">DNS</span><span class="tt">Migrations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="titem" data-tags="current dev">
+          <div class="tdot now"></div>
+          <div class="exp-card">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name green">Pivotal Workforce</div>
+                <div class="role-title">Independent Contractor Full-Stack WordPress Developer</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>2026 – present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Remote · Toronto, Canada</div>
+              </div>
+              <div class="badges">
+                <span class="badge current">Current</span>
+                <span class="badge intl">Canada</span>
+              </div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Managed and maintained the organization's web infrastructure ensuring high availability, security, and optimal performance.</li>
+                <li>Designed and developed 10+ high-converting landing pages for recruitment and marketing campaigns.</li>
+                <li>Integrated landing pages with Google Sheets via Google Apps Script to automate lead capture and data collection.</li>
+                <li>Configured CRM systems and installed and maintained the OpenCATS Applicant Tracking System.</li>
+                <li>Deployed and managed RDP virtual machine environments for secure remote operations.</li>
+                <li>Collaborated with lead marketing strategist in the Philippines to plan and execute digital campaigns.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt b">WordPress</span><span class="tt">Google Apps Script</span><span class="tt">CRM</span><span class="tt">OpenCATS</span><span class="tt g">RDP</span><span class="tt">Landing Pages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="titem" data-tags="current founder dev">
+          <div class="tdot key"></div>
+          <div class="exp-card featured">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name purple">TechCore247 Technologies · RC: 8433151</div>
+                <div class="role-title">Founder Web Developer and Head of Operations</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>2026 present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Victoria Island, Lagos</div>
+              </div>
+              <div class="badges">
+                <span class="badge founder">Founder</span>
+                <span class="badge current">Current</span>
+              </div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Founded TechCore247 an IT solutions and e-commerce company specialising in computer sales, repair services, and digital solutions.</li>
+                <li>Designed, developed, and launched the company website from the ground up using WordPress and WooCommerce.</li>
+                <li>Built and optimized the WooCommerce e-commerce platform including product catalog, secure payment integration, and checkout flow.</li>
+                <li>Developed an online repair booking and service request system to streamline customer support operations.</li>
+                <li>Implemented Cloudflare CDN, DNS management, SSL/TLS, firewall rules, and website security protocols.</li>
+                <li>Optimized performance through caching, image optimization, database tuning, and Core Web Vitals improvements.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt b">WordPress</span><span class="tt">WooCommerce</span><span class="tt g">Cloudflare</span><span class="tt">SEO</span><span class="tt">WhatsApp API</span><span class="tt p">Analytics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-marker">2021 2025</div>
+      <div class="timeline">
+
+        <div class="titem" data-tags="current dev">
+          <div class="tdot now"></div>
+          <div class="exp-card featured">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name blue">Sales366 Online Limited</div>
+                <div class="role-title">Independent Contractor Web Developer and Equity Partner</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>Jan 2021 – present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Remote · Nigeria and Canada</div>
+              </div>
+              <div class="badges">
+                <span class="badge equity">7+ Platforms</span>
+                <span class="badge intl">Nigeria + CA</span>
+              </div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Built and continue to maintain sales366.com the core platform serving the Nigerian market from the ground up.</li>
+                <li>Delivered 7+ AI-built platforms with technical leadership and long-term commitment.</li>
+                <li>Designed and implemented API integrations with Carbon Zero, Unital Capital, and Credit Direct to streamline payments and enhance user experience.</li>
+                <li>Delivered multi-platform remote support across IT systems, content creation, and platform management.</li>
+                <li>Gained extensive experience with cloud infrastructures, CRM platforms, and modern development tools.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt b">Platform Dev</span><span class="tt">API Integration</span><span class="tt g">Fintech</span><span class="tt">CRM</span><span class="tt p">Cloud infra</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="titem" data-tags="it">
+          <div class="tdot"></div>
+          <div class="exp-card">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name orange">The Adorable Toes School</div>
+                <div class="role-title">Freelance IT Consultant and Service Provider</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>2022 – 2025<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Ocean Palm Estate, Lagos</div>
+              </div>
+              <div class="badges"><span class="badge remote">On-site</span></div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Managed inventory and lifecycle replacement of computers and IT equipment across the school.</li>
+                <li>Provided first and second-level technical support for teachers, administrative staff, and management.</li>
+                <li>Configured and maintained wired and wireless network infrastructure to ensure reliable connectivity.</li>
+                <li>Installed, configured, and supported educational software, productivity apps, and digital learning tools.</li>
+                <li>Maintained documentation of ICT assets, repairs, maintenance schedules, and support activities.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt">Networking</span><span class="tt">Hardware</span><span class="tt">IT Support</span><span class="tt">Software Setup</span><span class="tt g">Documentation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="year-marker">2020 early career</div>
+      <div class="timeline">
+
+        <div class="titem" data-tags="dev it">
+          <div class="tdot"></div>
+          <div class="exp-card">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name green">Skillhat Consulting Firm</div>
+                <div class="role-title">Freelance IT Support, Content Creation and Web Developer</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>2020 present<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Victoria Island, Lagos</div>
+              </div>
+              <div class="badges"><span class="badge current">Ongoing</span></div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title">key achievements</div>
+              <ul class="ach-list">
+                <li>Led the planning, design, and full development of the company's official website.</li>
+                <li>Designed marketing materials, promotional graphics, and branded digital assets using Adobe Photoshop and Illustrator.</li>
+                <li>Provided ongoing IT consulting and technical support to enhance the organisation's operations.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt b">Web Dev</span><span class="tt p">Adobe PS</span><span class="tt">Illustrator</span><span class="tt">IT Support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="titem" data-tags="it">
+          <div class="tdot"></div>
+          <div class="exp-card">
+            <div class="card-top">
+              <div class="card-left">
+                <div class="co-name orange">Orbit 360 Resources Limited</div>
+                <div class="role-title">IT Specialist Internship</div>
+                <div class="date-loc"><i class="ti ti-calendar" aria-hidden="true"></i>2020 · 1 year<span>·</span><i class="ti ti-map-pin" aria-hidden="true"></i>Victoria Island, Lagos</div>
+              </div>
+              <div class="badges"><span class="badge remote">Internship</span></div>
+            </div>
+            <div class="achievements">
+              <div class="ach-title"> key achievements</div>
+              <ul class="ach-list">
+                <li>Assisted in system engineering tasks including computer configuration, installation, and troubleshooting.</li>
+                <li>Performed network setup and maintenance, ensuring stable connectivity and minimising downtime.</li>
+                <li>Conducted hardware and software diagnostics, resolving issues with laptops, desktops, and peripheral devices.</li>
+                <li>Supported data management and backup processes, contributing to secure IT operations.</li>
+              </ul>
+            </div>
+            <div class="tech-tags">
+              <span class="tt">Networking</span><span class="tt">Hardware</span><span class="tt">Diagnostics</span><span class="tt g">Data backup</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-bar">
+        <div class="cta-bar-text">
+          <strong>Ready to add your company to this list?</strong>
+          Open to remote contracts, full-time roles, and long-term collaborations worldwide.
+        </div>
+        <button class="cta-btn" onclick="sendPrompt('I want to hire David what are the next steps?')">Let's work together →</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function filterExp(tag, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.titem').forEach(item=>{
+    if(tag==='all'){item.classList.remove('hidden');return;}
+    const tags=(item.dataset.tags||'').split(' ');
+    item.classList.toggle('hidden',!tags.includes(tag));
+  });
+}
+</script>
