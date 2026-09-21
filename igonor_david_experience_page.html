@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
 html,body{background:#fff;}
@@ -19,6 +18,8 @@ html,body{background:#fff;}
 .navlinks a:hover{background:#f5f5f5;color:#0d0d0d;}
 .nav-hire{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:0.78rem;font-weight:600;padding:0.45rem 1.1rem;border-radius:8px;background:#0d0d0d;color:#fff;border:none;cursor:pointer;font-family:inherit;transition:background 0.15s;}
 .nav-hire:hover{background:#2563eb;}
+
+.mobile-toggle{display:none;background:none;border:none;font-size:1.25rem;cursor:pointer;color:#0d0d0d;}
 
 .body{position:relative;z-index:1;padding:2.5rem 2rem 3rem;}
 
@@ -61,15 +62,13 @@ html,body{background:#fff;}
 .exp-card.featured{border-color:#bfdbfe;background:#fafcff;}
 
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;gap:1rem;}
-.card-left{}
 .co-name{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-family:'Fira Code',monospace;}
 .co-name.blue{color:#2563eb;}
 .co-name.purple{color:#7c3aed;}
 .co-name.green{color:#16a34a;}
 .co-name.orange{color:#ea580c;}
 .role-title{font-size:1rem;font-weight:700;color:#0d0d0d;margin-top:2px;line-height:1.2;}
-.date-loc{font-size:0.7rem;color:#aaa;margin-top:3px;font-family:'Fira Code',monospace;display:flex;align-items:center;gap:0.5rem;}
-.date-loc i{font-size:11px;}
+.date-loc{font-size:0.7rem;color:#aaa;margin-top:3px;font-family:'Fira Code',monospace;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
 
 .badges{display:flex;gap:5px;flex-wrap:wrap;}
 .badge{font-size:0.65rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:100px;}
@@ -107,6 +106,145 @@ html,body{background:#fff;}
 .cta-bar-text strong{display:block;font-size:0.95rem;color:#0d0d0d;margin-bottom:2px;}
 .cta-btn{background:#0d0d0d;color:#fff;padding:0.6rem 1.3rem;border-radius:9px;font-weight:600;font-size:0.82rem;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0;transition:background 0.15s;}
 .cta-btn:hover{background:#2563eb;}
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-label {
+    margin-bottom: 0;
+    padding-right: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .filter-btn {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    padding: 0.35rem 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .navlinks {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    order: 3;
+  }
+
+  .navlinks.open {
+    display: flex;
+  }
+
+  .nav-hire {
+    order: 2;
+  }
+
+  .body {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+
+  .hero-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .terminal {
+    width: 100% !important;
+  }
+
+  .stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sb {
+    border-bottom: 1px solid #ebebeb;
+    padding: 0.85rem 0.5rem;
+  }
+
+  .sb:nth-child(2n) {
+    border-right: none;
+  }
+
+  .sb:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .badges {
+    align-self: flex-start;
+  }
+
+  .cta-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cta-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .h2 {
+    font-size: 1.6rem;
+  }
+
+  .timeline {
+    padding-left: 1.25rem;
+  }
+
+  .tdot {
+    left: -1.25rem;
+  }
+
+  .exp-card {
+    padding: 1rem;
+  }
+}
 </style>
 
 <div class="pg">
@@ -115,7 +253,8 @@ html,body{background:#fff;}
 
 <nav class="nav">
   <div class="logo">David<span>.</span><span class="logo-dot"></span></div>
-  <div class="navlinks">
+  <button class="mobile-toggle" onclick="toggleNav()" aria-label="Toggle Navigation">☰</button>
+  <div class="navlinks" id="navlinks">
     <a href="index.html">Home</a><a href="igonor_david_about_page.html">About</a><a href="igonor_david_experience_page.html" class="act">Experience</a><a href="igonor_david_projects_page.html">Projects</a><a href="igonor_david_contact_page.html">Contact</a>
   </div>
   <a class="nav-hire" href="igonor_david_contact_page.html#contact">Hire me →</a>
@@ -157,7 +296,7 @@ html,body{background:#fff;}
   <div class="layout">
 
     <div class="sidebar">
-      <div class="filter-label">filter by</div>
+      <div class="filter-label">filter:</div>
       <button class="filter-btn active" onclick="filterExp('all',this)">All roles</button>
       <button class="filter-btn" onclick="filterExp('current',this)">Current</button>
       <button class="filter-btn" onclick="filterExp('founder',this)">Founder</button>
@@ -461,5 +600,10 @@ function filterExp(tag, btn){
     const tags=(item.dataset.tags||'').split(' ');
     item.classList.toggle('hidden',!tags.includes(tag));
   });
+}
+
+function toggleNav() {
+  const navlinks = document.getElementById('navlinks');
+  navlinks.classList.toggle('open');
 }
 </script>
